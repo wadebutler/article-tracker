@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import AuthForm from "./Routes/AuthForm/AuthForm";
+import Table from "./Routes/Table/Table";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { AuthContext } from "./Context/AuthContext";
+import { Protected } from "./Routes/Protected/Protected";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    const router = createBrowserRouter([
+        {
+            path: "/table",
+            exact: true,
+            element: (
+                <Protected>
+                    <Table />
+                </Protected>
+            ),
+        },
+        {
+            path: "/",
+            exact: true,
+            element: <AuthForm formType={"signin"} />,
+        },
+        {
+            path: "/signup",
+            exact: true,
+            element: <AuthForm formType={"signup"} />,
+        },
+    ]);
+    return (
+        <AuthContext>
+            <RouterProvider router={router} />
+        </AuthContext>
+    );
 }
-
-export default App;
