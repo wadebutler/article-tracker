@@ -1,5 +1,5 @@
 import AuthForm from "./Routes/AuthForm/AuthForm";
-import Table from "./Routes/Table/Table";
+import Articles from "./Routes/Articles/Articles";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthContext } from "./Context/AuthContext";
 import { Protected } from "./Routes/Protected/Protected";
@@ -11,7 +11,7 @@ export default function App() {
             exact: true,
             element: (
                 <Protected>
-                    <Table />
+                    <Articles />
                 </Protected>
             ),
         },

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AuthForm.css";
 import {
@@ -6,6 +6,7 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from "firebase/auth";
+import { FaEye } from "react-icons/fa";
 
 export default function AuthForm({ formType }) {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function AuthForm({ formType }) {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState(null);
+    const [displayPassword, setDisplayPassword] = useState(false);
     const isSignIn = formType === "signin" ? true : false;
 
     const handleSubmit = async () => {
@@ -42,13 +44,20 @@ export default function AuthForm({ formType }) {
         }
     };
 
+    useEffect(() => {
+        setEmail("");
+        setConfirmPassword("");
+        setPassword("");
+    }, [navigate]);
+
     return (
         <div className="auth-container">
-            <h1>Welcome {isSignIn ? "Sign In" : "Sign Up"}</h1>
+            <h1>Welcome {isSignIn ? "Sign-In" : "Sign-Up"}</h1>
 
             <label className="auth-label">
                 Email
                 <input
+                    value={email}
                     placeholder="Email"
                     onChange={(e) => {
                         setEmail(e.target.value);
@@ -59,10 +68,18 @@ export default function AuthForm({ formType }) {
             <label className="auth-label">
                 Password
                 <input
+                    type={displayPassword ? "text" : "password"}
                     placeholder="Password"
+                    value={password}
                     onChange={(e) => {
                         setPassword(e.target.value);
                     }}
+                />
+                <FaEye
+                    onClick={() => {
+                        setDisplayPassword(!displayPassword);
+                    }}
+                    className="auth-eye-icon"
                 />
             </label>
 
@@ -70,10 +87,17 @@ export default function AuthForm({ formType }) {
                 <label className="auth-label">
                     Confirm Password
                     <input
+                        type={displayPassword ? "text" : "password"}
                         placeholder="Confirm Password"
                         onChange={(e) => {
                             setConfirmPassword(e.target.value);
                         }}
+                    />
+                    <FaEye
+                        onClick={() => {
+                            setDisplayPassword(!displayPassword);
+                        }}
+                        className="auth-eye-icon"
                     />
                 </label>
             )}
@@ -97,7 +121,7 @@ export default function AuthForm({ formType }) {
                                 navigate("/signup", { replace: true })
                             }
                         >
-                            Sign Up
+                            Sign-Up
                         </button>
                     </>
                 ) : (
@@ -106,7 +130,7 @@ export default function AuthForm({ formType }) {
                         <button
                             onClick={() => navigate("/", { replace: true })}
                         >
-                            Sign In
+                            Sign-In
                         </button>
                     </>
                 )}
