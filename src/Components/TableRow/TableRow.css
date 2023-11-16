@@ -1,0 +1,13 @@
+td {
+    padding: 10px 0;
+    width: 200px;
+    text-align: center;
+}
+
+td > button:first-child {
+    margin-right: 20px;
+}
+
+.table-row-empty-row > td {
+    height: 19px;
+}

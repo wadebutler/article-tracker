@@ -21,12 +21,6 @@ export default function Articles() {
                 Sign Out
             </button>
 
-            <div className="articles-title">
-                <h2>Articles</h2>
-
-                <button>+ Add</button>
-            </div>
-
             <Table />
         </div>
     );

@@ -11,6 +11,10 @@
     height: 100vh;
 }
 
+button {
+    padding: 0 5px;
+}
+
 button:hover,
 button:focus {
     cursor: pointer;

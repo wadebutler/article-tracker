@@ -1,3 +1,9 @@
+.articles-title {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
 table,
 th,
 td {
@@ -7,4 +13,24 @@ td {
 
 th {
     padding: 5px;
+}
+
+.table-header-sort-icon {
+    margin: 4px 0 -2px 4px;
+}
+
+.table-header-sort-icon:hover,
+.table-header-sort-icon:focus {
+    cursor: pointer;
+}
+
+.table-page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.table-page-container > p {
+    margin: 0 10px;
 }
