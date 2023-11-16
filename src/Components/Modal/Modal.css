@@ -1,0 +1,40 @@
+.modal-backdrop {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-container {
+    background-color: #fff;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px;
+}
+
+.modal-close-icon {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.modal-close-icon:hover {
+    cursor: pointer;
+}
+
+.delete-modal-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.delete-modal-confirm-container {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}

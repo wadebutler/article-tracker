@@ -4,12 +4,21 @@ import { useEffect, useState } from "react";
 import { InfinitySpin } from "react-loader-spinner";
 import TableRow from "../TableRow/TableRow";
 import { FaArrowLeft, FaArrowRight, FaSort } from "react-icons/fa";
+import { useRecoilState } from "recoil";
+import { displayModalAtom, reloadAtom } from "../../Atoms";
 
 export default function Table() {
     const [tableData, setTableData] = useState(null);
     const [page, setPage] = useState(1);
+    const [displayModal, setDisplayModal] = useRecoilState(displayModalAtom);
+    const [reload, setReload] = useRecoilState(reloadAtom);
 
     useEffect(() => {
+        handleFetch();
+    }, [page, reload]);
+
+    const handleFetch = () => {
+        setReload(false);
         fetchData(page).then((data) => {
             if (data.data.length === 0) {
                 setPage(page - 1);
@@ -21,10 +30,11 @@ export default function Table() {
                         tempArr.push(null);
                     }
                 }
+
                 setTableData(tempArr);
             }
         });
-    }, [page]);
+    };
 
     return tableData === null ? (
         <InfinitySpin width="100" color="#000" />
@@ -33,7 +43,9 @@ export default function Table() {
             <div className="articles-title">
                 <h2>Articles</h2>
 
-                <button>+ Add</button>
+                <button onClick={() => setDisplayModal(!displayModal)}>
+                    + Add
+                </button>
             </div>
 
             <table className="table">
@@ -51,10 +63,7 @@ export default function Table() {
                             Created At
                             <FaSort className="table-header-sort-icon" />
                         </th>
-                        <th>
-                            Actions
-                            <FaSort className="table-header-sort-icon" />
-                        </th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>

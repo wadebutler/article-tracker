@@ -26,3 +26,18 @@ export const fetchData = (page) => {
             console.log(error);
         });
 };
+
+export const deleteData = (id) => {
+    let url = `${endpoint}/${id}`;
+    fetch(url, {
+        method: "DELETE",
+    })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};

@@ -3,6 +3,7 @@ import Articles from "./Routes/Articles/Articles";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthContext } from "./Context/AuthContext";
 import { Protected } from "./Routes/Protected/Protected";
+import { RecoilRoot } from "recoil";
 
 export default function App() {
     const router = createBrowserRouter([
@@ -28,7 +29,9 @@ export default function App() {
     ]);
     return (
         <AuthContext>
-            <RouterProvider router={router} />
+            <RecoilRoot>
+                <RouterProvider router={router} />
+            </RecoilRoot>
         </AuthContext>
     );
 }
