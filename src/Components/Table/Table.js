@@ -75,7 +75,7 @@ export default function Table() {
                 <button onClick={() => addModal()}>+ Add</button>
             </div>
 
-            <table className="table">
+            <table>
                 <thead>
                     <tr>
                         <th onClick={() => handleSort("title")}>

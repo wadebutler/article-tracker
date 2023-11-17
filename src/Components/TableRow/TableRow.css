@@ -2,10 +2,33 @@ td {
     padding: 10px 0;
     width: 200px;
     text-align: center;
+
+    @media (max-width: 475px) {
+        width: auto;
+        padding: 5px;
+    }
 }
 
 td > button:first-child {
     margin-right: 20px;
+
+    @media (max-width: 520px) {
+        margin-right: 5px;
+    }
+
+    @media (max-width: 475px) {
+        margin-right: 0px;
+        margin-bottom: 4px;
+    }
+}
+
+td:nth-child(4) {
+    @media (max-width: 475px) {
+        display: flex;
+        flex-direction: column;
+        border: none;
+        border-bottom: 1px solid var(--border);
+    }
 }
 
 .table-row-empty-row > td {
