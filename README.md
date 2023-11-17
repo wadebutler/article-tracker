@@ -1,4 +1,6 @@
-## the project uses Node version 18
+-the project uses Node version 18
+-Hosted project: https://article-tracker.netlify.app/
+-GitHub: https://github.com/wadebutler/article-tracker
 
 # Getting Started with Create React App
 
