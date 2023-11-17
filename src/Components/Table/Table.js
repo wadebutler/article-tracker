@@ -10,7 +10,7 @@ import { reloadAtom, modalContentAtom } from "../../Atoms";
 export default function Table() {
     const [tableData, setTableData] = useState(null);
     const [page, setPage] = useState(1);
-    const [sort, setSort] = useState(null);
+    const [sort, setSort] = useState({ value: null, direction: null });
     const [reload, setReload] = useRecoilState(reloadAtom);
     const [modalContent, setModalContent] = useRecoilState(modalContentAtom);
 
@@ -32,11 +32,17 @@ export default function Table() {
                     }
                 }
 
-                if (sort) {
+                if (sort.value) {
                     tempArr.sort((a, b) => {
-                        if (a[sort] < b[sort]) return -1;
-                        if (a[sort] > b[sort]) return 1;
-                        return 0;
+                        if (sort.direction === "asc") {
+                            if (a[sort.value] < b[sort.value]) return -1;
+                            if (a[sort.value] > b[sort.value]) return 1;
+                            return 0;
+                        } else if (sort.direction === "des") {
+                            if (a[sort.value] < b[sort.value]) return 1;
+                            if (a[sort.value] > b[sort.value]) return -1;
+                            return 0;
+                        }
                     });
                 }
 
@@ -50,10 +56,12 @@ export default function Table() {
     };
 
     const handleSort = (value) => {
-        if (sort === value) {
-            setSort(null);
+        if (sort.value === value && sort.direction === "asc") {
+            setSort({ value: value, direction: "des" });
+        } else if (sort.value === value && sort.direction === "des") {
+            setSort({ value: null, direction: null });
         } else {
-            setSort(value);
+            setSort({ value: value, direction: "asc" });
         }
     };
 
