@@ -12,10 +12,15 @@
 }
 
 button {
-    padding: 0 5px;
+    padding: 5px;
 }
 
 button:hover,
 button:focus {
     cursor: pointer;
+}
+
+input,
+textarea {
+    padding: 5px;
 }

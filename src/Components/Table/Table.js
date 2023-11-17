@@ -5,13 +5,14 @@ import { InfinitySpin } from "react-loader-spinner";
 import TableRow from "../TableRow/TableRow";
 import { FaArrowLeft, FaArrowRight, FaSort } from "react-icons/fa";
 import { useRecoilState } from "recoil";
-import { displayModalAtom, reloadAtom } from "../../Atoms";
+import { displayModalAtom, reloadAtom, modalContentAtom } from "../../Atoms";
 
 export default function Table() {
     const [tableData, setTableData] = useState(null);
     const [page, setPage] = useState(1);
     const [displayModal, setDisplayModal] = useRecoilState(displayModalAtom);
     const [reload, setReload] = useRecoilState(reloadAtom);
+    const [modalContent, setModalContent] = useRecoilState(modalContentAtom);
 
     useEffect(() => {
         handleFetch();
@@ -36,6 +37,11 @@ export default function Table() {
         });
     };
 
+    const addModal = () => {
+        setModalContent({ type: "add", item: null });
+        setDisplayModal(!displayModal);
+    };
+
     return tableData === null ? (
         <InfinitySpin width="100" color="#000" />
     ) : (
@@ -43,9 +49,7 @@ export default function Table() {
             <div className="articles-title">
                 <h2>Articles</h2>
 
-                <button onClick={() => setDisplayModal(!displayModal)}>
-                    + Add
-                </button>
+                <button onClick={() => addModal()}>+ Add</button>
             </div>
 
             <table className="table">

@@ -11,6 +11,11 @@ export default function TableRow({ data }) {
         setModalContent({ type: "delete", item: data });
     };
 
+    const handleEdit = () => {
+        setDisplayModal(!displayModal);
+        setModalContent({ type: "edit", item: data });
+    };
+
     return data === null ? (
         <tr className="table-row-empty-row">
             <td></td>
@@ -24,7 +29,7 @@ export default function TableRow({ data }) {
             <td>{data.author}</td>
             <td>{data.createdAt}</td>
             <td>
-                <button>Edit</button>
+                <button onClick={() => handleEdit()}>Edit</button>
                 <button onClick={() => handleDelete()}>Delete</button>
             </td>
         </tr>

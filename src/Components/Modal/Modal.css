@@ -38,3 +38,23 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.form-modal-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.form-modal-container > label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-modal-container > textarea {
+    height: 200px;
+}
+
+.form-modal-container > h2 {
+    margin-bottom: 20px;
+}

@@ -3,6 +3,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { useRecoilState } from "recoil";
 import { displayModalAtom, modalContentAtom } from "../../Atoms";
 import Delete from "./DeleteModal";
+import FormModal from "./FormModal";
 
 export default function Modal() {
     const [displayModal, setDisplayModal] = useRecoilState(displayModalAtom);
@@ -18,6 +19,8 @@ export default function Modal() {
                 />
 
                 {modalContent.type !== "delete" ? null : <Delete />}
+                {modalContent.type !== "add" ? null : <FormModal />}
+                {modalContent.type !== "edit" ? null : <FormModal />}
             </div>
         </div>
     );

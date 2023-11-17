@@ -18,10 +18,6 @@
     position: relative;
 }
 
-.auth-label > input {
-    padding: 5px;
-}
-
 .auth-submit {
     padding: 5px;
 }
