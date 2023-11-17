@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthContext } from "./Context/AuthContext";
 import { Protected } from "./Routes/Protected/Protected";
 import { RecoilRoot } from "recoil";
+import DarkMode from "./Components/DarkModeSwitch/DarkMode";
 
 export default function App() {
     const router = createBrowserRouter([
@@ -27,9 +28,11 @@ export default function App() {
             element: <AuthForm formType={"signup"} />,
         },
     ]);
+
     return (
         <AuthContext>
             <RecoilRoot>
+                <DarkMode />
                 <RouterProvider router={router} />
             </RecoilRoot>
         </AuthContext>
