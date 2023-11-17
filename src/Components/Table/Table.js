@@ -47,7 +47,7 @@ export default function Table() {
     ) : (
         <>
             <div className="articles-title">
-                <h2>Articles</h2>
+                <h1>Articles</h1>
 
                 <button onClick={() => addModal()}>+ Add</button>
             </div>

@@ -16,6 +16,8 @@ export default function DeleteModal() {
 
     return (
         <div className="delete-modal-container">
+            <h2>Delete</h2>
+
             <p>Are you sure you want to delete this item?</p>
 
             <div className="delete-modal-confirm-container">

@@ -9,12 +9,8 @@ export default function Articles() {
     const auth = getAuth();
     const [displayModal, setDisplayModal] = useRecoilState(displayModalAtom);
 
-    const handleSignOut = async () => {
-        try {
-            await signOut(auth);
-        } catch (error) {
-            console.log(error);
-        }
+    const handleSignOut = () => {
+        signOut(auth);
     };
 
     return (
