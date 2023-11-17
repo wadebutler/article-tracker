@@ -28,6 +28,9 @@ export default function AuthForm({ formType }) {
                 })
                 .catch((error) => {
                     console.log(error);
+                    setError(
+                        "Invalid login credentials, check your spelling and try again."
+                    );
                 });
         } else if (!isSignIn) {
             if (password === confirmPassword) {
@@ -39,7 +42,7 @@ export default function AuthForm({ formType }) {
                         console.log(error);
                     });
             } else {
-                setError("your passwords do not match");
+                setError("your passwords do not match.");
             }
         }
     };
@@ -48,6 +51,7 @@ export default function AuthForm({ formType }) {
         setEmail("");
         setConfirmPassword("");
         setPassword("");
+        setError(null);
     }, [navigate]);
 
     return (
@@ -117,9 +121,9 @@ export default function AuthForm({ formType }) {
                     <>
                         <p>Don't have an account?</p>
                         <button
-                            onClick={() =>
-                                navigate("/signup", { replace: true })
-                            }
+                            onClick={() => {
+                                navigate("/signup", { replace: true });
+                            }}
                         >
                             Sign-Up
                         </button>
