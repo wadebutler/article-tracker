@@ -10,13 +10,14 @@ import { displayModalAtom, reloadAtom, modalContentAtom } from "../../Atoms";
 export default function Table() {
     const [tableData, setTableData] = useState(null);
     const [page, setPage] = useState(1);
+    const [sort, setSort] = useState(null);
     const [displayModal, setDisplayModal] = useRecoilState(displayModalAtom);
     const [reload, setReload] = useRecoilState(reloadAtom);
     const [modalContent, setModalContent] = useRecoilState(modalContentAtom);
 
     useEffect(() => {
         handleFetch();
-    }, [page, reload]);
+    }, [page, reload, sort]);
 
     const handleFetch = () => {
         setReload(false);
@@ -32,6 +33,14 @@ export default function Table() {
                     }
                 }
 
+                if (sort) {
+                    tempArr.sort((a, b) => {
+                        if (a[sort] < b[sort]) return -1;
+                        if (a[sort] > b[sort]) return 1;
+                        return 0;
+                    });
+                }
+
                 setTableData(tempArr);
             }
         });
@@ -40,6 +49,14 @@ export default function Table() {
     const addModal = () => {
         setModalContent({ type: "add", item: null });
         setDisplayModal(!displayModal);
+    };
+
+    const handleSort = (value) => {
+        if (sort === value) {
+            setSort(null);
+        } else {
+            setSort(value);
+        }
     };
 
     return tableData === null ? (
@@ -55,15 +72,15 @@ export default function Table() {
             <table className="table">
                 <thead>
                     <tr>
-                        <th>
+                        <th onClick={() => handleSort("title")}>
                             Title
                             <FaSort className="table-header-sort-icon" />
                         </th>
-                        <th>
+                        <th onClick={() => handleSort("author")}>
                             Author
                             <FaSort className="table-header-sort-icon" />
                         </th>
-                        <th>
+                        <th onClick={() => handleSort("createdAt")}>
                             Created At
                             <FaSort className="table-header-sort-icon" />
                         </th>
