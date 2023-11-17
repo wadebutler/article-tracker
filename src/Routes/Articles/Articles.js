@@ -3,11 +3,11 @@ import "./Articles.css";
 import Table from "../../Components/Table/Table";
 import Modal from "../../Components/Modal/Modal";
 import { useRecoilState } from "recoil";
-import { displayModalAtom } from "../../Atoms";
+import { modalContentAtom } from "../../Atoms";
 
 export default function Articles() {
     const auth = getAuth();
-    const [displayModal, setDisplayModal] = useRecoilState(displayModalAtom);
+    const [modalContent, setModalContent] = useRecoilState(modalContentAtom);
 
     const handleSignOut = () => {
         signOut(auth);
@@ -15,7 +15,7 @@ export default function Articles() {
 
     return (
         <>
-            {!displayModal ? null : <Modal />}
+            {!modalContent.view ? null : <Modal />}
 
             <div>
                 <button

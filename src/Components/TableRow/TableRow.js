@@ -1,19 +1,20 @@
 import "./TableRow.css";
 import { useRecoilState } from "recoil";
-import { displayModalAtom, modalContentAtom } from "../../Atoms";
+import { modalContentAtom } from "../../Atoms";
 
 export default function TableRow({ data }) {
-    const [displayModal, setDisplayModal] = useRecoilState(displayModalAtom);
     const [modalContent, setModalContent] = useRecoilState(modalContentAtom);
 
     const handleDelete = () => {
-        setDisplayModal(!displayModal);
-        setModalContent({ type: "delete", item: data });
+        setModalContent({
+            view: !modalContent.view,
+            type: "delete",
+            item: data,
+        });
     };
 
     const handleEdit = () => {
-        setDisplayModal(!displayModal);
-        setModalContent({ type: "edit", item: data });
+        setModalContent({ view: !modalContent.view, type: "edit", item: data });
     };
 
     return data === null ? (

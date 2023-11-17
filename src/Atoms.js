@@ -5,14 +5,9 @@ export const tableDataAtom = atom({
     default: null,
 });
 
-export const displayModalAtom = atom({
-    key: "displayModalState",
-    default: false,
-});
-
 export const modalContentAtom = atom({
     key: "modalContentState",
-    default: null,
+    default: { view: null, type: null, item: null },
 });
 
 export const reloadAtom = atom({

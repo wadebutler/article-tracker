@@ -1,12 +1,11 @@
 import "./Modal.css";
 import { IoMdCloseCircle } from "react-icons/io";
 import { useRecoilState } from "recoil";
-import { displayModalAtom, modalContentAtom } from "../../Atoms";
+import { modalContentAtom } from "../../Atoms";
 import Delete from "./DeleteModal";
 import FormModal from "./FormModal";
 
 export default function Modal() {
-    const [displayModal, setDisplayModal] = useRecoilState(displayModalAtom);
     const [modalContent, setModalContent] = useRecoilState(modalContentAtom);
 
     return (
@@ -15,7 +14,13 @@ export default function Modal() {
                 <IoMdCloseCircle
                     size={30}
                     className="modal-close-icon"
-                    onClick={() => setDisplayModal(!displayModal)}
+                    onClick={() =>
+                        setModalContent({
+                            view: !modalContent.view,
+                            type: null,
+                            item: null,
+                        })
+                    }
                 />
 
                 {modalContent.type !== "delete" ? null : <Delete />}

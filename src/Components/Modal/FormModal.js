@@ -1,14 +1,13 @@
 import { useState } from "react";
 import "./Modal.css";
 import { useRecoilState } from "recoil";
-import { displayModalAtom, modalContentAtom, reloadAtom } from "../../Atoms";
+import { modalContentAtom, reloadAtom } from "../../Atoms";
 import { addData, updateData } from "../../API";
 import { getAuth } from "firebase/auth";
 
 export default function FormModal() {
     const auth = getAuth();
     const [modalContent, setModalContent] = useRecoilState(modalContentAtom);
-    const [displayModal, setDisplayModal] = useRecoilState(displayModalAtom);
     const [reload, setReload] = useRecoilState(reloadAtom);
     const [title, setTitle] = useState(
         modalContent.type === "add" ? "" : modalContent.item.title
@@ -28,7 +27,7 @@ export default function FormModal() {
 
         addData(tempPost);
         setReload(true);
-        setDisplayModal(!displayModal);
+        setModalContent({ view: !modalContent.view, type: null, item: null });
     };
 
     const handleEditSubmit = () => {
@@ -42,7 +41,7 @@ export default function FormModal() {
 
         updateData(modalContent.item.id, tempPost);
         setReload(true);
-        setDisplayModal(!displayModal);
+        setModalContent({ view: !modalContent.view, type: null, item: null });
     };
 
     return (

@@ -1,17 +1,16 @@
 import "./Modal.css";
 import { useRecoilState } from "recoil";
-import { displayModalAtom, modalContentAtom, reloadAtom } from "../../Atoms";
+import { modalContentAtom, reloadAtom } from "../../Atoms";
 import { deleteData } from "../../API";
 
 export default function DeleteModal() {
-    const [displayModal, setDisplayModal] = useRecoilState(displayModalAtom);
     const [modalContent, setModalContent] = useRecoilState(modalContentAtom);
     const [reload, setReload] = useRecoilState(reloadAtom);
 
     const handleDelete = () => {
         deleteData(modalContent.item.id);
-        setDisplayModal(!displayModal);
         setReload(true);
+        setModalContent({ view: !modalContent.view, type: null, item: null });
     };
 
     return (
@@ -23,9 +22,7 @@ export default function DeleteModal() {
             <div className="delete-modal-confirm-container">
                 <button onClick={() => handleDelete()}>Yes</button>
 
-                <button onClick={() => setDisplayModal(!displayModal)}>
-                    No
-                </button>
+                <button onClick={() => null}>No</button>
             </div>
         </div>
     );

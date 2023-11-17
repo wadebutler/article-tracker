@@ -5,13 +5,12 @@ import { InfinitySpin } from "react-loader-spinner";
 import TableRow from "../TableRow/TableRow";
 import { FaArrowLeft, FaArrowRight, FaSort } from "react-icons/fa";
 import { useRecoilState } from "recoil";
-import { displayModalAtom, reloadAtom, modalContentAtom } from "../../Atoms";
+import { reloadAtom, modalContentAtom } from "../../Atoms";
 
 export default function Table() {
     const [tableData, setTableData] = useState(null);
     const [page, setPage] = useState(1);
     const [sort, setSort] = useState(null);
-    const [displayModal, setDisplayModal] = useRecoilState(displayModalAtom);
     const [reload, setReload] = useRecoilState(reloadAtom);
     const [modalContent, setModalContent] = useRecoilState(modalContentAtom);
 
@@ -47,8 +46,7 @@ export default function Table() {
     };
 
     const addModal = () => {
-        setModalContent({ type: "add", item: null });
-        setDisplayModal(!displayModal);
+        setModalContent({ view: !modalContent.view, type: "add", item: null });
     };
 
     const handleSort = (value) => {
@@ -76,10 +74,12 @@ export default function Table() {
                             Title
                             <FaSort className="table-header-sort-icon" />
                         </th>
+
                         <th onClick={() => handleSort("author")}>
                             Author
                             <FaSort className="table-header-sort-icon" />
                         </th>
+
                         <th onClick={() => handleSort("createdAt")}>
                             Created At
                             <FaSort className="table-header-sort-icon" />
