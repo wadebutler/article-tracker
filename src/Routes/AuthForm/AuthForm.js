@@ -109,7 +109,7 @@ export default function AuthForm({ formType }) {
             {error === null ? null : <p className="auth-error-text">{error}</p>}
 
             <button
-                disabled={password === "" ? true : false}
+                disabled={!password ? true : false}
                 onClick={() => handleSubmit()}
                 className="auth-submit"
             >

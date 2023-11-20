@@ -15,14 +15,17 @@ export default function FormModal() {
     const [content, setContent] = useState(
         modalContent.type === "add" ? "" : modalContent.item.content
     );
+    const [tags, setTags] = useState(
+        modalContent.type === "add" ? "" : [...modalContent.item.tags]
+    );
 
     const handleAddSubmit = () => {
         const tempPost = {
-            createdAt: new Date(),
+            createdAt: new Date().toDateString(),
             title: title,
             author: auth.currentUser.email,
             content: content,
-            tags: [],
+            tags: [...tags],
         };
 
         addData(tempPost);
@@ -36,13 +39,15 @@ export default function FormModal() {
             title: title,
             author: auth.currentUser.email,
             content: content,
-            tags: [],
+            tags: [...tags],
         };
 
         updateData(modalContent.item.id, tempPost);
         setReload(true);
         setModalContent({ view: !modalContent.view, type: null, item: null });
     };
+
+    console.log(tags);
 
     return (
         <div className="form-modal-container">
@@ -69,11 +74,14 @@ export default function FormModal() {
 
             <label>
                 Tags:
-                <input />
+                <input
+                    value={tags}
+                    onChange={(e) => setTags(e.target.value.split(" "))}
+                />
             </label>
 
             <button
-                disabled={title === "" || content === "" ? true : false}
+                disabled={!title || !content ? true : false}
                 onClick={() =>
                     modalContent.type === "add"
                         ? handleAddSubmit()

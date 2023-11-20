@@ -28,7 +28,7 @@ export default function TableRow({ data }) {
         <tr>
             <td>{data.title}</td>
             <td>{data.author}</td>
-            <td>{data.createdAt}</td>
+            <td>{new Date(data.createdAt).toDateString()}</td>
             <td>
                 <button onClick={() => handleEdit()}>Edit</button>
                 <button onClick={() => handleDelete()}>Delete</button>
