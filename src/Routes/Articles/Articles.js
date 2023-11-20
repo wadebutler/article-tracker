@@ -5,7 +5,6 @@ import Modal from "../../Components/Modal/Modal";
 import { useRecoilState } from "recoil";
 import { modalContentAtom } from "../../Atoms";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 export default function Articles() {
     const auth = getAuth();
@@ -15,14 +14,6 @@ export default function Articles() {
     const handleSignOut = () => {
         signOut(auth);
     };
-
-    // useEffect(() => {
-    //     onAuthStateChanged(auth, (user) => {
-    //         if (!user) {
-    //             navigate("/table", { replace: true });
-    //         }
-    //     });
-    // }, []);
 
     return (
         <>
