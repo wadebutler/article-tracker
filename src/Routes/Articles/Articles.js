@@ -16,13 +16,13 @@ export default function Articles() {
         signOut(auth);
     };
 
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (!user) {
-                navigate("/table", { replace: true });
-            }
-        });
-    }, []);
+    // useEffect(() => {
+    //     onAuthStateChanged(auth, (user) => {
+    //         if (!user) {
+    //             navigate("/table", { replace: true });
+    //         }
+    //     });
+    // }, []);
 
     return (
         <>
