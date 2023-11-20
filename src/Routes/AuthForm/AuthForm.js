@@ -39,7 +39,8 @@ export default function AuthForm({ formType }) {
                         navigate("/table", { replace: true });
                     })
                     .catch((error) => {
-                        console.log(error);
+                        let err = error.code.toString();
+                        setError(err.slice(5, err.length));
                     });
             } else {
                 setError("your passwords do not match.");
@@ -49,8 +50,8 @@ export default function AuthForm({ formType }) {
 
     useEffect(() => {
         setEmail("");
-        setConfirmPassword("");
         setPassword("");
+        setConfirmPassword("");
         setError(null);
     }, [navigate]);
 
