@@ -18,6 +18,10 @@
 
 .auth-container > h1 {
     margin-bottom: 30px;
+
+    @media (max-width: 400px) {
+        text-align: center;
+    }
 }
 
 .auth-label {

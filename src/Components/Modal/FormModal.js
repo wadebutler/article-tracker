@@ -47,8 +47,6 @@ export default function FormModal() {
         setModalContent({ view: !modalContent.view, type: null, item: null });
     };
 
-    console.log(tags);
-
     return (
         <div className="form-modal-container">
             <h2>

@@ -30,8 +30,10 @@ export default function TableRow({ data }) {
             <td>{data.author}</td>
             <td>{new Date(data.createdAt).toDateString()}</td>
             <td>
-                <button onClick={() => handleEdit()}>Edit</button>
-                <button onClick={() => handleDelete()}>Delete</button>
+                <div>
+                    <button onClick={() => handleEdit()}>Edit</button>
+                    <button onClick={() => handleDelete()}>Delete</button>
+                </div>
             </td>
         </tr>
     );

@@ -9,7 +9,7 @@ td {
     }
 }
 
-td > button:first-child {
+td > div > button:first-child {
     margin-right: 20px;
 
     @media (max-width: 520px) {
@@ -22,12 +22,10 @@ td > button:first-child {
     }
 }
 
-td:nth-child(4) {
+td > div {
     @media (max-width: 475px) {
         display: flex;
         flex-direction: column;
-        border: none;
-        border-bottom: 1px solid var(--border);
     }
 }
 

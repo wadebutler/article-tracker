@@ -2,6 +2,10 @@
     display: flex;
     justify-content: space-around;
     margin-bottom: 10px;
+
+    @media (max-width: 475px) {
+        margin-top: 80px;
+    }
 }
 
 table,
@@ -33,6 +37,10 @@ table {
     align-items: center;
     justify-content: center;
     margin-top: 10px;
+
+    @media (max-width: 475px) {
+        margin-bottom: 10px;
+    }
 }
 
 .table-page-container > p {
