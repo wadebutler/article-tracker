@@ -23,9 +23,10 @@ export default function Modal() {
                     }
                 />
 
-                {modalContent.type !== "delete" ? null : <Delete />}
-                {modalContent.type !== "add" ? null : <FormModal />}
-                {modalContent.type !== "edit" ? null : <FormModal />}
+                {modalContent.type === "delete" ? <Delete /> : null}
+                {modalContent.type === "add" || modalContent.type === "edit" ? (
+                    <FormModal />
+                ) : null}
             </div>
         </div>
     );

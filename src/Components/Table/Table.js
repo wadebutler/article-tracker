@@ -34,14 +34,16 @@ export default function Table() {
 
                 if (sort.value) {
                     tempArr.sort((a, b) => {
-                        if (sort.direction === "asc") {
-                            if (a[sort.value] < b[sort.value]) return -1;
-                            if (a[sort.value] > b[sort.value]) return 1;
-                            return 0;
-                        } else if (sort.direction === "des") {
-                            if (a[sort.value] < b[sort.value]) return 1;
-                            if (a[sort.value] > b[sort.value]) return -1;
-                            return 0;
+                        if (a && b) {
+                            if (sort.direction === "asc") {
+                                if (a[sort?.value] < b[sort?.value]) return -1;
+                                if (a[sort?.value] > b[sort?.value]) return 1;
+                                return 0;
+                            } else if (sort.direction === "des") {
+                                if (a[sort.value] < b[sort.value]) return 1;
+                                if (a[sort.value] > b[sort.value]) return -1;
+                                return 0;
+                            }
                         }
                     });
                 }
@@ -49,10 +51,6 @@ export default function Table() {
                 setTableData(tempArr);
             }
         });
-    };
-
-    const addModal = () => {
-        setModalContent({ view: !modalContent.view, type: "add", item: null });
     };
 
     const handleSort = (value) => {
@@ -72,7 +70,17 @@ export default function Table() {
             <div className="articles-title">
                 <h1>Articles</h1>
 
-                <button onClick={() => addModal()}>+ Add</button>
+                <button
+                    onClick={() =>
+                        setModalContent({
+                            view: !modalContent.view,
+                            type: "add",
+                            item: null,
+                        })
+                    }
+                >
+                    + Add
+                </button>
             </div>
 
             <table>
